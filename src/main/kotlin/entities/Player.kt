@@ -28,61 +28,80 @@ class Player {
             "l" -> {
                 position[0] += 1
                 chanceOnRanEncounter += 1
-                if (Random.nextInt(0, chanceOnRanEncounter) == 0) events.spawnEnemy()
             }
             "p" -> {
                 position[0] += 1
                 chanceOnRanEncounter -= 1
-                if (Random.nextInt(0, chanceOnRanEncounter) == 0) events.spawnEnemy()
             }
             "n" -> {
                 position[1] += 1
                 chanceOnRanEncounter -= 1
-                if (Random.nextInt(0, chanceOnRanEncounter) == 0) events.spawnEnemy()
             }
             "d" -> {
                 position[1] -= 1
                 chanceOnRanEncounter -= 1
-                if (Random.nextInt(0, chanceOnRanEncounter) == 0) events.spawnEnemy()
             }
             "m" -> {
                 println("Mighty barel je od tebe vzdálený: ${map.mightyCity.position[0] - position[0]} po ose X a ${map.mightyCity.position[1] - position[1]} po ose Y")
                 println("Nevyčištěné dunegony jsou od tebe vzdálené: ")
-                for (dungeon in map.dungeons){
-                    if(!dungeon.isClear){
+                for (dungeon in map.dungeons) {
+                    if (!dungeon.isClear) {
                         println("${dungeon.position[0] - position[0]} po ose X a ${dungeon.position[1] - position[1]} po ose Y")
                     }
                 }
             }
         }
+        if (chanceOnRanEncounter <= 2 && Random.nextBoolean()) events.spawnEnemy()
     }
 
-    fun attack(enemy: Enemy) {
+    fun attack(enemy: Enemy): Enemy {
         println("Na jakou část těla utočíš ? - hlava(h), telo(t), nohy(n)")
-        when(readln()){
-            "h" ->{
+        when (readln()) {
+            "h" -> {
+                if (!dodge(enemy)) {
+                    enemy.hp -= dmg
+                    enemy.def -= 1
 
+                    println("Dáváš poškození za $dmg")
+                    println("Oponent má ${enemy.hp} hp a snížil se mu def na  ${enemy.def}")
+                } else {
+                    println("Minul jsi")
+                }
             }
             "t" -> {
+                if (!dodge(enemy)) {
+                    enemy.hp -= dmg
 
+                    println("Dáváš poškození za $dmg")
+                    println("Oponent má ${enemy.hp} hp")
+                } else {
+                    println("Minul jsi")
+                }
             }
             "n" -> {
+                if (!dodge(enemy)) {
+                    enemy.hp -= dmg
+                    enemy.agi -= 1
 
+                    println("Dáváš poškození za $dmg")
+                    println("Oponent má ${enemy.hp} hp a snížil se mu agi na  ${enemy.agi}")
+                } else {
+                    println("Minul jsi")
+                }
             }
-
         }
+        return enemy
     }
 
-    fun dodge(): Boolean {
+    private fun dodge(enemy: Enemy): Boolean {
         TODO()
     }
 
     fun death(): Boolean {
-
         return (hp <= 0)
     }
 
-    fun escape(): Boolean{
+    fun escape(): Boolean {
         TODO()
     }
 }

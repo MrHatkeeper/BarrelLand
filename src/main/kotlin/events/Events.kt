@@ -19,12 +19,12 @@ class Events {
         return enemy
     }
 
-    fun startFight(player: Player) {
+    fun startFight(player: Player): Player {
         val enemy = spawnEnemy()
         var flee = false
 
         println("Bojuješ proti ${enemy.type}")
-        println("Jeho staty jsou dmg - ${enemy.dmg} def - ${enemy.def} hp - ${enemy.hp} agi -  ${enemy.agi}")
+        println("Jeho staty jsou dmg - ${enemy.dmg} def - ${enemy.def} hp - ${enemy.hp} agi - ${enemy.agi}")
         println("Co chceš dělat ? Dostupné příkazy - boj(b), utek(u)")
         while (true) {
             when (readln()) {
@@ -37,9 +37,9 @@ class Events {
                     }
                     else{
                         println("Zakopl si a nepodařilo se ti utéct")
+                        break
                     }
                 }
-
                 "b" -> {
                     break
                 }
@@ -49,9 +49,20 @@ class Events {
 
         if(!flee){
             while (true) {
+                println("\n")
                 player.attack(enemy)
+                if(enemy.hp <= 0){
+                    val loot = enemy.dropGold()
+                    println("Zabíšjíš oponenta")
+                    println("Získal jsi $loot. Máš ${player.gold}")
+                    break
+                }
                 enemy.attack(player)
+                if(player.death()){
+                    break
+                }
             }
         }
+        return player
     }
 }
