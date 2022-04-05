@@ -58,11 +58,6 @@ data class Enemy(
     }
 
     private fun dodge(player: Player): Boolean {
-        var dodgeChance = player.agi - agi
-        if (dodgeChance <= 0) dodgeChance = 1
-        if (Random.nextInt(dodgeChance)+1 > player.agi) {
-            return true
-        }
-        return false
+        TODO()
     }
 }
