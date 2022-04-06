@@ -94,8 +94,15 @@ class Player {
     }
 
     private fun dodge(enemy: Enemy): Boolean {
-        TODO()
+        val dodgeChance = enemy.agi - agi
+        if(dodgeChance > 0){
+            if(Random.nextInt(3,10 ) < dodgeChance){
+                return true
+            }
+        }
+        return false
     }
+
 
     fun death(): Boolean {
         return (hp <= 0)

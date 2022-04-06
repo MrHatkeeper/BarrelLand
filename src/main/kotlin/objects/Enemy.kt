@@ -58,6 +58,12 @@ data class Enemy(
     }
 
     private fun dodge(player: Player): Boolean {
-        TODO()
+        val dodgeChance = player.agi - agi
+        if(dodgeChance > 0){
+            if(Random.nextInt(3,10) < dodgeChance){
+                return true
+            }
+        }
+        return false
     }
 }

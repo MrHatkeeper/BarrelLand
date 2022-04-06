@@ -20,7 +20,7 @@ class Game {
                         dungeon.enterDungeon()
                     }
             }
-            if(Random.nextInt(0,2) == 0) player.chanceOnRanEncounter--
+            player.chanceOnRanEncounter--
             if(player.chanceOnRanEncounter <= 0){
                 events.startFight(player)
                 if (player.death()){
@@ -28,7 +28,7 @@ class Game {
                     print("Konec hry")
                     break
                 }
-                player.chanceOnRanEncounter = 5
+                player.chanceOnRanEncounter = Random.nextInt(1,15)
             }
         }
     }

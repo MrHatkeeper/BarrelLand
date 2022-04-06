@@ -5,7 +5,7 @@ import objects.Enemy
 
 class EnemyConstructor{
     val skeleton = Enemy(
-        type = EnemyTypes.SKELETON.name,
+        type = EnemyTypes.SKELETON.callMe,
         hp = EnemyTypes.SKELETON.hp,
         agi = EnemyTypes.SKELETON.agi,
         def = EnemyTypes.SKELETON.def,
@@ -13,7 +13,7 @@ class EnemyConstructor{
         value = EnemyTypes.SKELETON.value
     )
     val spider = Enemy(
-        type = EnemyTypes.SPIDER.name,
+        type = EnemyTypes.SPIDER.callMe,
         hp = EnemyTypes.SPIDER.hp,
         agi = EnemyTypes.SPIDER.agi,
         def = EnemyTypes.SPIDER.def,
@@ -21,7 +21,7 @@ class EnemyConstructor{
         value = EnemyTypes.SPIDER.value
     )
     val troll = Enemy(
-        type = EnemyTypes.TROLL.name,
+        type = EnemyTypes.TROLL.callMe,
         hp = EnemyTypes.TROLL.hp,
         agi = EnemyTypes.TROLL.agi,
         def = EnemyTypes.TROLL.def,
@@ -29,7 +29,7 @@ class EnemyConstructor{
         value = EnemyTypes.TROLL.value
     )
     val goblin = Enemy(
-        type = EnemyTypes.GOBLIN.name,
+        type = EnemyTypes.GOBLIN.callMe,
         hp = EnemyTypes.GOBLIN.hp,
         agi = EnemyTypes.GOBLIN.agi,
         def = EnemyTypes.GOBLIN.def,
